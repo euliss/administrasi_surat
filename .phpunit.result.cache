@@ -1,0 +1,1 @@
+{"version":1,"defects":{"Tests\\Feature\\Auth\\LoginTest::test_submit_data_success":4},"times":{"Tests\\Unit\\ExampleTest::test_that_true_is_true":0.006,"Tests\\Feature\\Auth\\LoginTest::test_render_page":0.304,"Tests\\Feature\\ExampleTest::test_the_application_returns_a_successful_response":0.023,"Tests\\Feature\\Auth\\LoginTest::test_submit_data_success":0.065}}

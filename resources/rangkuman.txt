@@ -1,0 +1,111 @@
+1. Login
+M = model user bawaan laravel, migrasi => nambahin atribut pelengkap user seperti email dan password
+C = index()->menjalankan view login, authenticate()->menerima data inputan dari view login kemudian diproses atau disamakan dengan model apakah sama atau tidak, jika sama maka dibuatkan session untuk masuk home, jika tidak maka memunculkan alert gagal login
+V = v_login untuk menampilkan view login berupa form yang menerima inputan email dan password kemudian diproses di controller authenticate()
+
+2. Logout
+M = model user bawaan laravel
+C = logout()->menghapus session user dan diarahkan ke halaman login
+V = ada di dashboard dibagian tulisan logout merupakan tombol didalam form yang menerima inputan user mana yg sudah login kemudian diproses di logout()
+
+3. Profil
+M = model user bawaan laravel
+C = profilcontroller.index() menampilkan halaman profil dengan tambahan variabel berisi data user yang sedang login
+V = berisi form inputan untuk mengubah data user kemudian diproses ke UserController->strore() untuk disimpan datanya
+
+4. Kelola User
+M = model user bawaan laravel
+C = UserController
+- index() -> menampilkan semua data user
+- create() -> menampilkan halaman form tambah data user
+- store() -> memproses data inputan dari create() dan memasukkan ke table
+- show() -> menampilkan halaman dengan data user yang telah dipilih
+- edit() -> menampilkan halaman form ubah data user dan membawa data user yang telah dipilih
+- update() -> memproses data inputan dari edt() dan mengubah data yang dulu dengan yang baru telah diinput
+- destroy() -> menghapus data user yang telah dipilih
+
+5. Kelola Agenda
+M = model Task, mempunyai FK dari model user
+C = TaskController
+- index() -> menampilkan halaman form inputan data agenda dan kalender
+- create() -> sama seperti ind
+- store() -> memproses data inputan dari create() dan memasukkan ke table
+- show() -> menampilkan halaman dengan data agenda yang telah dipilih
+- edit() -> menampilkan halaman form ubah data agenda dan membawa data agenda yang telah dipilih
+- update() -> memproses data inputan dari edt() dan mengubah data yang dulu dengan yang baru telah diinput
+- destroy() -> menghapus data agenda yang telah dipilih
+
+6. Kelola Absensi
+M =
+- Absensi -> mempunyai FK dari user untuk menerima data dari user
+- AbsensiDetail -> mempunyai FK dari absensi untuk menerima data inti dari absensi seperti nama kegiatan dan waktu
+C = AbsensiController
+- index() -> menampilkan halaman table semua data absensi
+- create() -> menampilkan halaman form untuk inputan absensi dan data dari user untuk dijadikan pilihan inputan
+- store() -> memproses pembuatan data absensi dan menambahkan setiap data orang ke absensi detail dan memasukkan FK abensi untuk mengetahui parent dari absensi detail. dan mengubah jumlah peserta setiap kali absensi detail dengan FK absensi sama dengan PK absensi
+- show() -> menampilkan halaman dengan data absensi yang telah dipilih dan semua data absensi detail dengan FK absensi sama dengan PK absensi
+- edit() -> menampilkan halaman data form input data untuk mengubah data absensi yang telah dipilih
+- update() -> memproses data inputan dari edt() dan mengubah data yang dulu dengan yang baru telah diinput
+- destroy() -> menghapus data di table absensi detail dan absensi
+
+7. Kelola Pengajuan
+M = Pengajuan dengan FK dari user untuk mendapatkan data dari pembuat pengajuan
+C = PengajuanController
+- index() -> menampilkan halaman table semua data pengajuan
+- create() -> menampilkan halaman form untuk inputan pengajuan
+- store() -> memproses pembuatan data pengajuan
+- show() -> menampilkan semua data pengajuan yang telah dipilih
+- edit()
+    (user) menampilkan halaman data form input data untuk mengubah data absensi yang telah dipilih
+    (sekretaris) mengubah status dan menambah komentar dari pengajuan
+- update() ->
+    (user) -> memproses data inputan dari edt() dan mengubah data yang dulu dengan yang baru telah diinput
+    (sekretaris) -> memproses data inputan dan langsung diteruskan ke halaman pembuatan surat keluar dengan inputan data sudah terisi dari data pengajuan yang telah ditindaklanjuti
+- destroy() -> menghapus data pengajuan yang telah dipilih
+
+8. Kelola Surat Masuk
+M = SuratMasuk dengan FK user untuk mendapatkan data dari pembuat suratkeluar
+C = SuratKeluarController
+- index() -> menampilkan halaman table semua data suratmasuk
+- create() -> menampilkan halaman form untuk inputan suratmasuk
+- store() -> memproses pembuatan data suratmasuk
+- show() -> menampilkan semua data suratmasuk yang telah dipilih
+- edit() -> memampilkan halaman data form inputan ubah data dengan form sudah terisi dengan data yang lama
+- update() -> memproses data inputan dari edt() dan mengubah data yang dulu dengan yang baru telah diinput
+- destroy() -> menghapus data suratmasuk yang telah dipilih
+
+9. Kelola Surat keluar
+M = Suratkeluar dengan FK user untuk mendapatkan data dari pembuat suratkeluar
+C = SuratKeluarController
+- index() -> menampilkan halaman table semua data suratkeluar
+- create() -> menampilkan halaman form untuk inputan suratkeluar
+- store() -> memproses pembuatan data suratkeluar
+- show() -> menampilkan semua data suratkeluar yang telah dipilih
+- edit() -> memampilkan halaman data form inputan ubah data dengan form sudah terisi dengan data yang lama
+- update() -> memproses data inputan dari edt() dan mengubah data yang dulu dengan yang baru telah diinput
+- destroy() -> menghapus data suratkeluar yang telah dipilih
+- tambah() -> menampilkan halaman tambah data dengan form sudah terisi dari data pengajuan yang telah ditindaklanjuti
+- simpan() -> mengolah data dari tambah() dan menyimpan di table suratkeluar
+- print() -> menampilkan halaman dengan format A4 berisi data dari table suratekluar yang telah dipilih kemudian menjalankan perintah print ke A4
+
+10. Kelola Dokumenlainnya
+M = Suratkeluar dengan FK user untuk mendapatkan data dari pembuat dokumen lainnya
+C = DokumenLainnyaController
+- index() -> menampilkan halaman table semua data dokumenLainnya
+- create() -> menampilkan halaman form untuk inputan dokumenLainnya
+- store() -> memproses pembuatan data dokumenLainnya
+- show() -> menampilkan semua data dokumenLainnya yang telah dipilih
+- edit() -> memampilkan halaman data form inputan ubah data dengan form sudah terisi dengan data yang lama
+- update() -> memproses data inputan dari edt() dan mengubah data yang dulu dengan yang baru telah diinput
+- destroy() -> menghapus data dokumenLainnya yang telah dipilih
+
+11. Riwayat
+M = Riwayat
+- notif() -> memilah jenis riwayat untuk dijadikan notifikasi disetiap jabatan user,
+(pengurus) riwayat jenis pengajuan yang berstatus telah ditindaklanjuti oleh sekretaris
+(sekretaris) riwayat jenis pengajuan yang berstatus menunggu, riwayat suratkeluar yang telah disetujui pemiban
+(pembina) riwayat suratkeluar yang berstatus menunggu
+C = RiwayatController
+- destroy() -> menghapus data riwayat yang telah dipilih
+Keterangan: data riwayat ditambah disetiap kali store, update, dan destroy di surat masuk, surat keluar, dan dokumen lainnya dijalankan.
+data riwayat tidak bisa diubah
